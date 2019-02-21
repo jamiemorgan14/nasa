@@ -1,0 +1,20 @@
+header {
+  background-color: rgba(33, 33, 88, 0.452);
+  padding-bottom: 25px
+}
+
+body {
+  background-image: url(https://images.unsplash.com/photo-1532954751162-d1b6d1f3b1a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+  background-attachment: fixed;
+  background-position: bottom;
+}
+
+.my-card {
+  margin-top: 5px;
+  margin-bottom: 5px
+}
+
+.my-img {
+  max-height: 200px;
+  min-height: 200px
+}

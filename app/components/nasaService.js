@@ -1,7 +1,5 @@
 import Photo from "../models/photo.js";
 
-insertDateString
-
 // @ts-ignore
 let _nasaApi = axios.create({
   baseURL: 'https://api.nasa.gov/mars-photos/api/v1/rovers/'
@@ -15,12 +13,16 @@ let _sandbox = axios.create({
 //variable controls for url
 
 let apiKey = '3brEv0bv6oVHZz3CULO5Q1z9vEPHPzh0fQdKKIXW';
+let today = new Date()
+let year = today.getFullYear();
+let mm = today.getMonth() + 1
+let dd = today.getDate() - 7
 
 let _state = {
   photos: [],
   selection: {
     rover: 'curiosity',
-    photoDate: '2017-7-3'
+    photoDate: `${year}-${mm}-${dd}`
   }
 };
 
@@ -36,9 +38,6 @@ function setState(prop, data) {
 
 //public
 export default class NasaService {
-  constructor() {
-    console.log(_state.selection)
-  }
   addSubscriber(prop, fn) {
     _subscribers[prop].push(fn)
   };
@@ -63,6 +62,10 @@ export default class NasaService {
       .catch(err => {
         console.error(err)
       })
+  }
+
+  printInfo() {
+    document.getElementById('show-date').innerHTML = `${_state.selection.rover.toUpperCase()}     ${_state.selection.photoDate.toUpperCase()}`
   }
 
 }

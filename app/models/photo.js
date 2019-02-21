@@ -6,9 +6,9 @@ export default class Photo {
   }
   getPhoto() {
     return `
-    <div class="col-12 col-md-4">
-      <div class="card">
-        <img class="card-img-top" src="${this.img}" alt="Card image cap">
+    <div class="col-12 col-md-2">
+      <div class="card text-center my-card">
+        <a target="_blank" href=${this.img}><img class="card-img-top my-img" src="${this.img}" alt="Card image cap"><a>
           <div class="card-body">
             <h5 class="card-title">${this.date}</h5>
             <p class="card-text">${this.name}</p>

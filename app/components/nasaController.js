@@ -3,6 +3,7 @@ import NasaService from "./nasaService.js"
 let _ns = new NasaService()
 
 function drawApiPhotos() {
+  _ns.printInfo()
   let template = ''
   let photos = _ns.Photos
   photos.forEach(p => {
@@ -10,8 +11,8 @@ function drawApiPhotos() {
   })
   document.getElementById('show-photos').innerHTML = template
   document.getElementById('form').innerHTML = `
-    <form onsubmit = "app.controllers.nasaController.changeSelection(event)" >
-      <select name="rover">
+    <form class="text-center" onsubmit = "app.controllers.nasaController.changeSelection(event)" >
+      Rover: <select name="rover">
         <option value="">Select A Rover</option>
         <option value="curiosity">Curiosity</option>
         <option value="opportunity">Opportunity</option>
@@ -30,7 +31,6 @@ export default class NasaController {
 
     //initialize data
     _ns.getNasaData()
-    console.log(this.changeSelection)
   }
   changeSelection(event) {
     //change _state.selection based on form input

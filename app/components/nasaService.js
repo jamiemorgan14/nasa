@@ -1,6 +1,6 @@
 import Photo from "../models/photo.js";
 
-;
+insertDateString
 
 // @ts-ignore
 let _nasaApi = axios.create({
@@ -19,8 +19,8 @@ let apiKey = '3brEv0bv6oVHZz3CULO5Q1z9vEPHPzh0fQdKKIXW';
 let _state = {
   photos: [],
   selection: {
-    rover: 'opportunity',
-    photoDate: '2016-7-4'
+    rover: 'curiosity',
+    photoDate: '2017-7-3'
   }
 };
 
@@ -36,6 +36,9 @@ function setState(prop, data) {
 
 //public
 export default class NasaService {
+  constructor() {
+    console.log(_state.selection)
+  }
   addSubscriber(prop, fn) {
     _subscribers[prop].push(fn)
   };
@@ -44,6 +47,12 @@ export default class NasaService {
     return _state.photos.map(p => new Photo(p))
   }
 
+  changeSelection(newRover, newPhotoDate) {
+    //change _state.selection based on form input
+    _state.selection.rover = newRover;
+    _state.selection.photoDate = newPhotoDate
+    this.getNasaData()
+  }
 
   getNasaData() {
     _nasaApi.get(`${_state.selection.rover}/photos?earth_date=${_state.selection.photoDate}&api_key=${apiKey}`)
@@ -54,9 +63,6 @@ export default class NasaService {
       .catch(err => {
         console.error(err)
       })
-  }
-  changeSelection() {
-    //pick up here.... change _state.selection based on form input
   }
 
 }

@@ -15,8 +15,10 @@ function drawApiPhotos() {
 export default class NasaController {
   constructor() {
     _ns.addSubscriber('photos', drawApiPhotos);
+    _ns.addSubscriber('selection', drawApiPhotos)
 
     //initialize data
     _ns.getNasaData()
   }
+
 }

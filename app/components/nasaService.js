@@ -13,16 +13,20 @@ let _sandbox = axios.create({
 })
 
 //variable controls for url
-let rover = 'opportunity'
-let photoDate = '2016-7-4';
+
 let apiKey = '3brEv0bv6oVHZz3CULO5Q1z9vEPHPzh0fQdKKIXW';
 
 let _state = {
-  photos: []
+  photos: [],
+  selection: {
+    rover: 'opportunity',
+    photoDate: '2016-7-4'
+  }
 };
 
 let _subscribers = {
-  photos: []
+  photos: [],
+  selection: []
 };
 
 function setState(prop, data) {
@@ -42,7 +46,7 @@ export default class NasaService {
 
 
   getNasaData() {
-    _nasaApi.get(`${rover}/photos?earth_date=${photoDate}&api_key=${apiKey}`)
+    _nasaApi.get(`${_state.selection.rover}/photos?earth_date=${_state.selection.photoDate}&api_key=${apiKey}`)
       .then(res => {
         let data = res.data.photos.map(p => new Photo(p))
         setState('photos', data)
@@ -50,7 +54,9 @@ export default class NasaService {
       .catch(err => {
         console.error(err)
       })
-
+  }
+  changeSelection() {
+    //pick up here.... change _state.selection based on form input
   }
 
 }
